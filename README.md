@@ -39,4 +39,14 @@ It allows users to filter the data in an easier fashion, and to hone in on diffe
 - Referencing the data in python (or js) from mongo and grabbing necessary columns for functions needed to build our leaflet map and bar chart.
 - What is the timeframe we want to explore? (TBD)
 - What interactivity do we want to implement?
-- Filters on the map where they can show beaches only with good water grades, or by other factors. (Still TBD)
+  - Filters on the map where they can show beaches only with good water grades, or by other factors. (Still TBD)
+
+### Design Plan
+
+- Create a dashboard to hold a map and a few graphs, where we can filter the data by grade and some other factors. Initial ideas are:
+
+- Plotting all beaches from the dataset into Leaflet map, adding a legend which allows for selection of certain factors.
+
+- Adding plotly visualizations onto the dashboard to further analyze the data, i.e:
+  - Grade counts by County (bar plot, or bubble chart where size represents the number of beaches w high grades)
+  - Beach count vs grade (less focused visualization than the first)
