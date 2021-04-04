@@ -1,3 +1,4 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "python.pythonPath": "C:\\Users\\sanab\\anaconda3\\envs\\beach_project\\python.exe"
 }
