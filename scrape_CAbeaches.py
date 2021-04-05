@@ -209,7 +209,7 @@ for beach in beach_urls:
         
             elif title.text == "Owner":
                 owner = value_soup[i].text
-                beach[5][title.text] = owner
+                beach[5]["owner"] = owner
                 if "owner" not in title_list:
                     title_list.append("owner")
             
@@ -221,9 +221,10 @@ for beach in beach_urls:
                         title_list.append("owner_url")
         
             else:
-                beach[5][title.text] = value_soup[i].text
-                if title.text.lower() not in title_list:
-                    title_list.append(title.text.lower())
+                mod_title = title.text.replace(" ", "_").lower()
+                beach[5][mod_title] = value_soup[i].text
+                if mod_title not in title_list:
+                    title_list.append(mod_title)
                                      
             i+=1
 
