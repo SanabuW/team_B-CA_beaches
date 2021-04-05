@@ -27,7 +27,7 @@ Beach = create_classes(db)
 
 @app.route("/")
 def home():
-    results = db.session.query(Beach.beach_name).first()
+    results = db.session.query(Beach.beach_name, Beach.id).first()
     print(results)
     return render_template("index.html", text1 = "jinja test1", text2 = results)
 
