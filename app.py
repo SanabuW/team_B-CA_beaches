@@ -37,7 +37,24 @@ def home():
 
 @app.route("/api/beaches")
 def beaches():
-    results = db.session.query(Beach.id, Beach.beach_name).first()
+    results = db.session.query(
+    Beach.id,
+    Beach.region,
+    Beach.county,
+    Beach.area,
+    Beach.beach_name,
+    Beach.beach_url,
+    Beach.address1,
+    Beach.address2,
+    Beach.park_name,
+    Beach.owner_url,
+    Beach.activities,
+    Beach.amenities,
+    Beach.pet_policy,
+    Beach.fees,
+    Beach.phone,
+    Beach.other_names
+    ).first()
     # hover_text = [result[0] for result in results]
     # lat = [result[1] for result in results]
     # lon = [result[2] for result in results]
