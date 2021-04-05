@@ -27,6 +27,7 @@ Beach = create_classes(db)
 
 @app.route("/")
 def home():
+    # results = db.session.query(Beach.beach_name, Beach.id).first()
     results = db.session.query(Beach).first()
     print(results)
     return render_template("index.html", text1 = "jinja test1", text2 = results)
@@ -34,31 +35,33 @@ def home():
 
 
 
-@app.route("/api/beaches")
-def beaches():
-    results = db.session.query(Beach.beach_name).first()
-    # hover_text = [result[0] for result in results]
-    # lat = [result[1] for result in results]
-    # lon = [result[2] for result in results]
+# @app.route("/api/beaches")
+# def beaches():
+#     results = db.session.query(Beach.beach_name, Beach.id).first()
+#     # hover_text = [result[0] for result in results]
+#     # lat = [result[1] for result in results]
+#     # lon = [result[2] for result in results]
 
-    # pet_data = [{
-    #     "type": "scattergeo",
-    #     "locationmode": "USA-states",
-    #     "lat": lat,
-    #     "lon": lon,
-    #     "text": hover_text,
-    #     "hoverinfo": "text",
-    #     "marker": {
-    #         "size": 50,
-    #         "line": {
-    #             "color": "rgb(8,8,8)",
-    #             "width": 1
-    #         },
-    #     }
-    # }]
+#     beach_data = [{
+#         "beach_name": results[0]
+#     #     "type": "scattergeo",
+#     #     "locationmode": "USA-states",
+#     #     "lat": lat,
+#     #     "lon": lon,
+#     #     "text": hover_text,
+#     #     "hoverinfo": "text",
+#     #     "marker": {
+#     #         "size": 50,
+#     #         "line": {
+#     #             "color": "rgb(8,8,8)",
+#     #             "width": 1
+#     #         },
+#     #     }
+#     }]
 
-    return print(type(results))
-    # return jsonify(pet_data)
+#     return jsonify(beach_data)
+
+#     # return jsonify(pet_data)
 
 
 

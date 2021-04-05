@@ -26,10 +26,9 @@ function buildPlot() {
 //           countrycolor: "rgb(255,255,255)"
 //         }
 //       };
-  
+
 //       Plotly.newPlot("plot", data, layout);
     });
-  }
-  
-  buildPlot();
-  
+}
+
+buildPlot();
