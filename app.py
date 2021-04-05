@@ -54,28 +54,29 @@ def beaches():
     Beach.fees,
     Beach.phone,
     Beach.other_names
-    ).first()
+    ).all()
     # hover_text = [result[0] for result in results]
     # lat = [result[1] for result in results]
     # lon = [result[2] for result in results]
-
-    beach_data = [{
-        "id": results[0],
-        "region": results[1],
-        "county": results[2],
-        "area": results[3],
-        "beach_name": results[4],
-        "beach_url": results[5],
-        "address1": results[6],
-        "address2": results[7],
-        "park_name": results[8],
-        "owner_url": results[9],
-        "activities": results[10],
-        "amenities": results[11],
-        "pet_policy": results[12],
-        "fees": results[13],
-        "phone": results[14],
-        "other_names": results[15]
+    beach_data = []
+    for beach_info in results:
+        beach_data.append({
+            "id": beach_info[0],
+            "region": beach_info[1],
+            "county": beach_info[2],
+            "area": beach_info[3],
+            "beach_name": beach_info[4],
+            "beach_url": beach_info[5],
+            "address1": beach_info[6],
+            "address2": beach_info[7],
+            "park_name": beach_info[8],
+            "owner_url": beach_info[9],
+            "activities": beach_info[10],
+            "amenities": beach_info[11],
+            "pet_policy": beach_info[12],
+            "fees": beach_info[13],
+            "phone": beach_info[14],
+            "other_names": beach_info[15]
     #     "type": "scattergeo",
     #     "locationmode": "USA-states",
     #     "lat": lat,
@@ -89,7 +90,7 @@ def beaches():
     #             "width": 1
     #         },
     #     }
-    }]
+    })
 
     return jsonify(beach_data)
 
