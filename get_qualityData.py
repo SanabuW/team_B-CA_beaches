@@ -88,7 +88,7 @@ for beach in r.json():
 beach_df = pd.DataFrame(beach_data)
 
 # pull out columns of value
-beach_df = beach_df[["id", "title", "name1", "latitude", "longitude", "address", "city", "county", "state", "zip", "county", "active", "grade_updated","dry_grade", "wet_grade", "annual_summer_dry", "annual_year_wet", "annual_winter_dry", "annual_year", "grade_created"]]
+beach_df = beach_df[["id", "title", "name1", "latitude", "longitude", "address", "city", "state", "zip", "county", "active", "grade_updated","dry_grade", "wet_grade", "annual_summer_dry", "annual_year_wet", "annual_winter_dry", "annual_year", "grade_created"]]
 
 # write dataframe to a CSV file
 beach_df.to_csv("data/grade_info.csv")
