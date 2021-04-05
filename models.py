@@ -4,7 +4,7 @@ def create_classes(db):
 
         id = db.Column(db.Integer, primary_key=True)
         region = db.Column(db.String(64))
-        country = db.Column(db.String(64))
+        county = db.Column(db.String(64))
         area = db.Column(db.String(64))
         beach_name = db.Column(db.String(64))
         beach_url = db.Column(db.String(64))
