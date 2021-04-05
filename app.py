@@ -44,7 +44,21 @@ def beaches():
 
     beach_data = [{
         "id": results[0],
-        "beach_name": results[1]
+        "region": results[1],
+        "county": results[2],
+        "area": results[3],
+        "beach_name": results[4],
+        "beach_url": results[5],
+        "address1": results[6],
+        "address2": results[7],
+        "park_name": results[8],
+        "owner_url": results[9],
+        "activities": results[10],
+        "amenities": results[11],
+        "pet_policy": results[12],
+        "fees": results[13],
+        "phone": results[14],
+        "other_names": results[15]
     #     "type": "scattergeo",
     #     "locationmode": "USA-states",
     #     "lat": lat,
