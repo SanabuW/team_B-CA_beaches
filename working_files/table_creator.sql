@@ -1,20 +1,27 @@
 CREATE TABLE beaches (	
 	id SERIAL PRIMARY KEY,
-	Region VARCHAR,
-	County VARCHAR,
-	Area VARCHAR,
-	Beach_Name VARCHAR,
-	Beach_URL VARCHAR,
-	Address1 VARCHAR,
-	Address2 VARCHAR,
-	Park_Name VARCHAR,
-	Owner_URL VARCHAR,
-	Activities VARCHAR,
-	Amenities VARCHAR,
-	Pet_Policy VARCHAR,
-	Fees VARCHAR,
-	Phone VARCHAR,
-	Other_Names VARCHAR
+	region VARCHAR,
+	county VARCHAR,
+	area VARCHAR,
+	beach_name VARCHAR,
+	beach_url VARCHAR,
+	address VARCHAR,
+	city VARCHAR,
+	state VARCHAR,
+	zip VARCHAR,
+	latitude FLOAT,
+	longitude FLOAT,
+	park_name VARCHAR,
+	owner VARCHAR,
+	owner_url VARCHAR,
+	activities VARCHAR,
+	amenities VARCHAR,
+	pet_policy VARCHAR,
+	pets_allowed VARCHAR,
+	fees VARCHAR,
+	free_parking VARCHAR,
+	phone VARCHAR,
+	other_names VARCHAR
 );
 
 
@@ -37,7 +44,6 @@ CREATE TABLE grade_data (
 	annual_summer_dry VARCHAR,
 	annual_year_wet VARCHAR,
 	annual_winter_dry VARCHAR,
-	annual_yaer VARCHAR,
-	grade_created VARCHAR,
-	alerts VARCHAR
+	annual_year VARCHAR,
+	grade_created VARCHAR
 );
