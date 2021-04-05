@@ -39,21 +39,21 @@ def home():
 def beaches():
     results = db.session.query(
     Beach.id,
-    Beach.region
-    # Beach.county,
-    # Beach.area,
-    # Beach.beach_name,
-    # Beach.beach_url,
-    # Beach.address1,
-    # Beach.address2,
-    # Beach.park_name,
-    # Beach.owner_url,
-    # Beach.activities,
-    # Beach.amenities,
-    # Beach.pet_policy,
-    # Beach.fees,
-    # Beach.phone,
-    # Beach.other_names
+    Beach.region,
+    Beach.county,
+    Beach.area,
+    Beach.beach_name,
+    Beach.beach_url,
+    Beach.address1,
+    Beach.address2,
+    Beach.park_name,
+    Beach.owner_url,
+    Beach.activities,
+    Beach.amenities,
+    Beach.pet_policy,
+    Beach.fees,
+    Beach.phone,
+    Beach.other_names
     ).first()
     # hover_text = [result[0] for result in results]
     # lat = [result[1] for result in results]
@@ -61,21 +61,21 @@ def beaches():
 
     beach_data = [{
         "id": results[0],
-        "region": results[1]
-        # "county": results[2],
-        # "area": results[3],
-        # "beach_name": results[4],
-        # "beach_url": results[5],
-        # "address1": results[6],
-        # "address2": results[7],
-        # "park_name": results[8],
-        # "owner_url": results[9],
-        # "activities": results[10],
-        # "amenities": results[11],
-        # "pet_policy": results[12],
-        # "fees": results[13],
-        # "phone": results[14],
-        # "other_names": results[15]
+        "region": results[1],
+        "county": results[2],
+        "area": results[3],
+        "beach_name": results[4],
+        "beach_url": results[5],
+        "address1": results[6],
+        "address2": results[7],
+        "park_name": results[8],
+        "owner_url": results[9],
+        "activities": results[10],
+        "amenities": results[11],
+        "pet_policy": results[12],
+        "fees": results[13],
+        "phone": results[14],
+        "other_names": results[15]
     #     "type": "scattergeo",
     #     "locationmode": "USA-states",
     #     "lat": lat,
