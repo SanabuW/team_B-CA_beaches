@@ -45,5 +45,6 @@ CREATE TABLE grade_data (
 	annual_year_wet VARCHAR,
 	annual_winter_dry VARCHAR,
 	annual_year VARCHAR,
-	grade_created VARCHAR
+	grade_created VARCHAR,
+	alerts VARCHAR
 );

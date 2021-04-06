@@ -13,16 +13,22 @@ CREATE TABLE "beaches" (
     "area" VARCHAR   NOT NULL,
     "beach_name" VARCHAR   NOT NULL,
     "beach_url" VARCHAR   NOT NULL,
-    "address1" VARCHAR   NOT NULL,
-    "address2" VARCHAR   NOT NULL,
+    "address" VARCHAR   NOT NULL,
+    "city" VARCHAR   NOT NULL,
+    "state" VARCHAR NOT NULL,
+    "zip"   VARCHAR NOT NULL,
     "park_name" VARCHAR   NOT NULL,
     "owner_url" VARCHAR   NOT NULL,
     "activities" VARCHAR   NOT NULL,
     "amenities" VARCHAR   NOT NULL,
     "pet_policy" VARCHAR   NOT NULL,
+    "pets_allowed" VARCHAR  NOT NULL,
     "fees" VARCHAR   NOT NULL,
+    "free_parking" VARCHAR  NOT NULL,
     "phone" VARCHAR   NOT NULL,
     "other_names" VARCHAR   NOT NULL,
+    "latitude" FLOAT    NOT NULL,
+    "longitude" FLOAT   NOT NULL,
     CONSTRAINT "pk_beaches" PRIMARY KEY (
         "id"
      )
@@ -47,7 +53,8 @@ CREATE TABLE "grade_data" (
     "annual_year_wet" VARCHAR   NOT NULL,
     "annual_winter_dry" VARCHAR   NOT NULL,
     "annual_year" VARCHAR   NOT NULL,
-    "grade_created" VARCHAR   NOT NULL
+    "grade_created" VARCHAR   NOT NULL,
+    "alerts" VARCHAR    NOT NULL
 );
 
 CREATE TABLE "beaches_location" (
@@ -57,14 +64,18 @@ CREATE TABLE "beaches_location" (
     "area" VARCHAR   NOT NULL,
     "beach_name" VARCHAR   NOT NULL,
     "beach_url" VARCHAR   NOT NULL,
-    "address1" VARCHAR   NOT NULL,
-    "address2" VARCHAR   NOT NULL,
+    "address" VARCHAR   NOT NULL,
+    "city" VARCHAR   NOT NULL,
+    "state" VARCHAR NOT NULL,
+    "zip" VARCHAR NOT NULL,
     "park_name" VARCHAR   NOT NULL,
     "owner_url" VARCHAR   NOT NULL,
     "activities" VARCHAR   NOT NULL,
     "amenities" VARCHAR   NOT NULL,
     "pet_policy" VARCHAR   NOT NULL,
+    "pets_allowed" VARCHAR  NOT NULL,
     "fees" VARCHAR   NOT NULL,
+    "free_parking" VARCHAR  NOT NULL,
     "phone" VARCHAR   NOT NULL,
     "other_names" VARCHAR   NOT NULL,
     "latitude" VARCHAR   NOT NULL,
