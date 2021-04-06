@@ -2,8 +2,17 @@
     background-color:rgb(183, 204, 209);
 }
 
+
+#map,
+  body,
+  html {
+    height: 95%;
+  }
+
 #mapviz{
     background-color:#ff0000;
+    height: 550px;
+    width: 60%;
     border:1px solid;
     border-color:black
 }
