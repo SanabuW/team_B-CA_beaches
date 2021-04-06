@@ -24,6 +24,7 @@ def create_classes(db):
         free_parking = db.Column(db.String(1))
         phone = db.Column(db.String(64))
         other_names = db.Column(db.String(64))
+        
 
         def __repr__(self):
             return '<Beach %r>' % (self.beach_name)
