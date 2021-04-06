@@ -60,6 +60,7 @@ for region in region_soup:
                 region = x[-3]
                 cnty = x[-2]
                 cnty = cnty.replace("-", " ")
+                cnty = cnty.replace(" county", "")
                 county_urls.append([region.title(), cnty.title(), county_url])
                 
 

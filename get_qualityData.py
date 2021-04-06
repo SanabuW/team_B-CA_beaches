@@ -62,7 +62,19 @@ for beach in r.json():
     if beach["_source"]["state"] == "CA":
      
         for title in title_list:
+            if title == "alerts":
+             # grab current Alerts instead of _source.alerts
+                if "currentAlert" in beach:
+                    beach_data["alerts"].append(beach["currentAlert"])
+                else:
+                    beach_data["alerts"].append("")
+
+            # check for data in associated with this key 
             if title in beach["_source"]:
+                 # skip if alerts, we got it from currentAlert
+                if title == "alerts":
+                    continue
+                                   
                 if title == "geo":
                     # separate coordinates
                     beach_data["latitude"].append(beach["_source"][title][0])
@@ -88,7 +100,7 @@ for beach in r.json():
 beach_df = pd.DataFrame(beach_data)
 
 # pull out columns of value
-beach_df = beach_df[["id", "title", "name1", "latitude", "longitude", "address", "city", "state", "zip", "county", "active", "grade_updated","dry_grade", "wet_grade", "annual_summer_dry", "annual_year_wet", "annual_winter_dry", "annual_year", "grade_created"]]
+beach_df = beach_df[["id", "title", "name1", "latitude", "longitude", "address", "city", "state", "zip", "county", "active", "grade_updated","dry_grade", "wet_grade", "annual_summer_dry", "annual_year_wet", "annual_winter_dry", "annual_year", "grade_created", "alerts"]]
 
 # write dataframe to a CSV file
 beach_df.to_csv("data/grade_info.csv")
