@@ -61,7 +61,7 @@ def home():
 
 @app.route("/api/grades")
 def grades():
-    grades_data = query_builder_func(session, Grade_data_dummy)
+    grades_data = query_builder_func(session, Beaches, Grade_data, Grade_data_dummy)
     return jsonify(grades_data)
 
 # Run app
