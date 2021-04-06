@@ -1,0 +1,30 @@
+.master_cont{
+    background-color:rgb(183, 204, 209);
+}
+
+#mapviz{
+    background-color:#ff0000;
+    border:1px solid;
+    border-color:black
+}
+
+#viz1{
+    background-color:rgb(1, 165, 206);
+    border:1px solid;
+    border-color:black
+}
+
+#viz2{
+    background-color:rgb(0, 146, 24);
+    border:1px solid;
+    border-color:black
+}
+
+#viz3{
+    background-color:rgb(226, 136, 0);
+    border:1px solid;
+    border-color:black
+}
+
+
+/* set Bootstrap breakpoint */
