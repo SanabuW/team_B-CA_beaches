@@ -1,11 +1,9 @@
 function buildPlot() {
     /* data route */
-    const url = "/api/beaches";
-    d3.json(url).then(function(response) {
-
-      console.log(response);
-
-//       const data = response;
+    const url = "/api/grades";
+    d3.json(url).then(function(error, response) {
+        if(error) throw error;
+            const data = response;
 
 //       const layout = {
 //         scope: "usa",
@@ -30,5 +28,5 @@ function buildPlot() {
 //       Plotly.newPlot("plot", data, layout);
     });
 }
-
+console.log("test something")
 buildPlot();
