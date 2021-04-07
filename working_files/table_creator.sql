@@ -30,7 +30,6 @@ CREATE TABLE beaches (
 CREATE TABLE grade_data (
 	id SERIAL PRIMARY KEY,
 	json_id INT,
-	title VARCHAR,
 	name1 VARCHAR,
 	latitude FLOAT,
 	longitude FLOAT,
@@ -47,8 +46,7 @@ CREATE TABLE grade_data (
 	annual_year_wet VARCHAR,
 	annual_winter_dry VARCHAR,
 	annual_year VARCHAR,
-	grade_created DATE,
-	alerts VARCHAR
+	grade_created DATE
 );
 
 

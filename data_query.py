@@ -77,7 +77,8 @@ def grades_query (session, Grade_data) :
         Grade_data.annual_year_wet,
         Grade_data.annual_winter_dry,
         Grade_data.annual_year,
-        Grade_data.grade_created
+        Grade_data.grade_created,
+        Grade_data.alerts
         ).all()
 
     grades_data = []
