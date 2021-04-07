@@ -1,32 +1,14 @@
-function buildPlot() {
-    /* data route */
-    const url = "/api/grades";
-    d3.json(url).then(function(error, response) {
-        if(error) throw error;
-            const data = response;
+    /* data routes */
+    const beaches_url = "/api/beaches";
+    const grades_url = "/api/grades";
+    const grades_dummy_url = "/api/grades_dummy";
 
-//       const layout = {
-//         scope: "usa",
-//         title: "Pet Pals",
-//         showlegend: false,
-//         height: 600,
-//               // width: 980,
-//         geo: {
-//           scope: "usa",
-//           projection: {
-//             type: "albers usa"
-//           },
-//           showland: true,
-//           landcolor: "rgb(217, 217, 217)",
-//           subunitwidth: 1,
-//           countrywidth: 1,
-//           subunitcolor: "rgb(255,255,255)",
-//           countrycolor: "rgb(255,255,255)"
-//         }
-//       };
+    Promise.all([
+        d3.json(beaches_url),
+        d3.json(grades_url),
+        d3.json(grades_dummy_url)
+        ]).then(function(data) {
+            console.log(data)
+});
 
-//       Plotly.newPlot("plot", data, layout);
-    });
-}
-console.log("test something")
-buildPlot();
+
