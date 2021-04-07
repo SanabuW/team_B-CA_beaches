@@ -1,4 +1,5 @@
-CREATE TABLE beaches (	
+-- Note FLOAT values for latitude, longitude
+CREATE TABLE beaches (
 	id SERIAL PRIMARY KEY,
 	region VARCHAR,
 	county VARCHAR,
@@ -24,28 +25,54 @@ CREATE TABLE beaches (
 	other_names VARCHAR
 );
 
-
-
-CREATE TABLE grade_data (	
+-- Note DATE values for grade_updated, grade_created
+-- Note FLOAT values for latitude, longitude
+CREATE TABLE grade_data (
 	id SERIAL PRIMARY KEY,
 	json_id INT,
 	title VARCHAR,
 	name1 VARCHAR,
-	latitude VARCHAR,
-	longitude VARCHAR,
+	latitude FLOAT,
+	longitude FLOAT,
 	address VARCHAR,
 	city VARCHAR,
 	county VARCHAR,
 	state VARCHAR,
 	zip VARCHAR,
 	active VARCHAR,
-	grade_updated VARCHAR,
+	grade_updated DATE,
 	dry_grade VARCHAR,
 	wet_grade VARCHAR,
 	annual_summer_dry VARCHAR,
 	annual_year_wet VARCHAR,
 	annual_winter_dry VARCHAR,
 	annual_year VARCHAR,
-	grade_created VARCHAR,
+	grade_created DATE,
 	alerts VARCHAR
 );
+
+
+-- OLD GRADE TABLE CREATION SCRIPT
+-- CREATE TABLE grade_data (
+-- 	id SERIAL PRIMARY KEY,
+-- 	json_id INT,
+-- 	title VARCHAR,
+-- 	name1 VARCHAR,
+-- 	latitude VARCHAR,
+-- 	longitude VARCHAR,
+-- 	address VARCHAR,
+-- 	city VARCHAR,
+-- 	county VARCHAR,
+-- 	state VARCHAR,
+-- 	zip VARCHAR,
+-- 	active VARCHAR,
+-- 	grade_updated VARCHAR,
+-- 	dry_grade VARCHAR,
+-- 	wet_grade VARCHAR,
+-- 	annual_summer_dry VARCHAR,
+-- 	annual_year_wet VARCHAR,
+-- 	annual_winter_dry VARCHAR,
+-- 	annual_year VARCHAR,
+-- 	grade_created VARCHAR,
+-- 	alerts VARCHAR
+-- );
