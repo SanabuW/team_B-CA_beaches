@@ -5,8 +5,11 @@
 #mapviz{
     background-color:#ff0000;
     border:1px solid;
-    border-color:black
+    border-color:black;
+    height: 700px;
+    width: 100%
 }
+
 
 #viz1{
     background-color:rgb(1, 165, 206);
