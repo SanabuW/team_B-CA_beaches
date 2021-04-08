@@ -12,7 +12,9 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
 # Query functions to be applied to the separate api routes
-from data_query import beach_query, grades_query, grades_dummy_query
+from data_query import beach_query, grades_query, grades_dummy_query, latest_grades_query
+
+
 
 # For secure/live ops version deployment
 from flask_sqlalchemy import SQLAlchemy
@@ -70,6 +72,11 @@ def beaches():
 def grades():
     Grades_output = grades_query(session, Grade_data)
     return jsonify(Grades_output)
+
+@app.route("/api/latest_grades")
+def latest_grades():
+    Latest_grades_output = latest_grades_query(session, Grade_data)
+    return jsonify(Latest_grades_output)
 
 @app.route("/api/grades_dummy")
 def grades_dummy():

@@ -85,25 +85,23 @@ def grades_query (session, Grade_data) :
         grades_data.append({
             "id": grades_info[0],
             "json_id": grades_info[1],
-            "title": grades_info[2],
-            "name1": grades_info[3],
-            "latitude": grades_info[4],
-            "longitude": grades_info[5],
-            "address": grades_info[6],
-            "city": grades_info[7],
-            "county": grades_info[8],
-            "state": grades_info[9],
-            "zip": grades_info[10],
-            "active": grades_info[11],
-            "grade_updated": grades_info[12],
-            "dry_grade": grades_info[13],
-            "wet_grade": grades_info[14],
-            "annual_summer_dry": grades_info[15],
-            "annual_year_wet": grades_info[16],
-            "annual_winter_dry": grades_info[17],
-            "annual_year": grades_info[18],
-            "grade_created": grades_info[19],
-            "alerts": grades_info[20]
+            "name1": grades_info[2],
+            "latitude": grades_info[3],
+            "longitude": grades_info[4],
+            "address": grades_info[5],
+            "city": grades_info[6],
+            "county": grades_info[7],
+            "state": grades_info[8],
+            "zip": grades_info[9],
+            "active": grades_info[10],
+            "grade_updated": grades_info[11],
+            "dry_grade": grades_info[12],
+            "wet_grade": grades_info[13],
+            "annual_summer_dry": grades_info[14],
+            "annual_year_wet": grades_info[15],
+            "annual_winter_dry": grades_info[16],
+            "annual_year": grades_info[17],
+            "grade_created": grades_info[18]
     })
     return grades_data
 
@@ -140,3 +138,39 @@ def grades_dummy_query (session, Grade_data_dummy) :
 
     # return grades_dummy_data
     return grades_dummy_data
+
+def latest_grades_query (session, Grade_data) :
+# Querying for all grade beach data
+    subq = session.query(func.max(Grade_data.id)).group_by(Grade_data.name1).all()
+
+    id_list = []
+    for x in subq:
+        id_list.append(x[0])
+
+    query = session.query(Grade_data).where(Grade_data.id.in_(id_list)).all()
+
+    latest_grades_data = []
+    for grades_info in query:
+        latest_grades_data.append({
+            "id": grades_info.id,
+            "json_id": grades_info.json_id,
+            "name1": grades_info.name1,
+            "latitude": grades_info.latitude,
+            "longitude": grades_info.longitude,
+            "address": grades_info.address,
+            "city": grades_info.city,
+            "county": grades_info.county,
+            "state": grades_info.state,
+            "zip": grades_info.zip,
+            "active": grades_info.active,
+            "grade_updated": grades_info.grade_updated,
+            "dry_grade": grades_info.dry_grade,
+            "wet_grade": grades_info.wet_grade,
+            "annual_summer_dry": grades_info.annual_summer_dry,
+            "annual_year_wet": grades_info.annual_year_wet,
+            "annual_winter_dry": grades_info.annual_winter_dry,
+            "annual_year": grades_info.annual_year,
+            "grade_created": grades_info.grade_created
+    })
+
+    return latest_grades_data

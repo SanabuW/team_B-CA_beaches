@@ -1,3 +1,5 @@
+from sqlalchemy import func
+
 def beach_query (session, Beaches) :
 # Querying for all general beach data
     beaches_results = session.query(
@@ -138,3 +140,40 @@ def grades_dummy_query (session, Grade_data_dummy) :
 
     # return grades_dummy_data
     return grades_dummy_data
+
+
+def latest_grades_query (session, Grade_data) :
+# Querying for all grade beach data
+    subq = session.query(func.max(Grade_data.id)).group_by(Grade_data.name1).all()
+
+    id_list = []
+    for x in subq:
+        id_list.append(x[0])
+
+    query = session.query(Grade_data).where(Grade_data.id.in_(id_list)).all()
+
+    latest_grades_data = []
+    for grades_info in query:
+        latest_grades_data.append({
+            "id": grades_info.id,
+            "json_id": grades_info.json_id,
+            "name1": grades_info.name1,
+            "latitude": grades_info.latitude,
+            "longitude": grades_info.longitude,
+            "address": grades_info.address,
+            "city": grades_info.city,
+            "county": grades_info.county,
+            "state": grades_info.state,
+            "zip": grades_info.zip,
+            "active": grades_info.active,
+            "grade_updated": grades_info.grade_updated,
+            "dry_grade": grades_info.dry_grade,
+            "wet_grade": grades_info.wet_grade,
+            "annual_summer_dry": grades_info.annual_summer_dry,
+            "annual_year_wet": grades_info.annual_year_wet,
+            "annual_winter_dry": grades_info.annual_winter_dry,
+            "annual_year": grades_info.annual_year,
+            "grade_created": grades_info.grade_created
+    })
+
+    return latest_grades_data
