@@ -26,5 +26,8 @@
     border-color:black
 }
 
+#latest_grades_viz{
+    height:400px
+}
 
 /* set Bootstrap breakpoint */

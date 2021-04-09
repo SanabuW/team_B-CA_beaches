@@ -9,16 +9,23 @@ from webdriver_manager.chrome import ChromeDriverManager
 from sqlalchemy import create_engine, insert
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from config import username
-from config import password
+#from config import password
+
+
 
 # initialize connection with Chrome Driver
 executable_path = {'executable_path': ChromeDriverManager().install()}
 browser = Browser('chrome', **executable_path, headless=True)
 
+
+
 # define our base URL
 base_url = "https://www.californiabeaches.com/beaches/"
 
+
+#######################
+#  FIRST LEVEL SCRAPE #
+#######################
 # scrape the regions off the main beach page
 browser.visit(base_url)
 html = browser.html
@@ -57,6 +64,12 @@ for region in region_soup:
                 county_urls.append([region.title(), cnty.title(), county_url])
                 
 
+#print(len(county_urls))
+
+
+#######################
+# SECOND LEVEL SCRAPE #
+#######################
 # initialize empty area list
 area_urls = []    
 area_url = ""
@@ -89,8 +102,14 @@ for county in county_urls:
                 curr_area = x[-2]
                 curr_area = curr_area.replace("-", " ")
                 area_urls.append([county[0], county[1], curr_area.title(), area_url])
+                
+#print(area_urls)
+#print(len(area_urls))
 
 
+######################
+# THIRD LEVEL SCRAPE #
+######################
 # initialize empty beach list
 beach_urls = []    
 beach_url = ""
@@ -123,6 +142,16 @@ for area in area_urls:
                 curr_beach = curr_beach.replace("-", " ")
                 beach_urls.append([area[0], area[1], area[2], curr_beach.title(), beach_url])
                 
+#print(beach_urls[0])
+#print(len(beach_urls))
+
+
+##############################################
+# FINAL SCRAPE -- INDIVIDUAL BEACH PAGES HIT #
+##############################################
+# initialize empty list of data titles
+title_list = []
+
 
 for beach in beach_urls:
     
@@ -171,83 +200,82 @@ for beach in beach_urls:
                 
 #                print(lat, lng)
 
+                if "address" not in title_list:
+                    title_list.append("address")
+                    title_list.append("city")
+                    title_list.append("state")
+                    title_list.append("zip")
+                    title_list.append("latitude")
+                    title_list.append("longitude")
         
             elif title.text == "Owner":
                 owner = value_soup[i].text
                 beach[5]["owner"] = owner
+                if "owner" not in title_list:
+                    title_list.append("owner")
             
                 if value_soup[i].a:
                     owner_url = value_soup[i].a["href"]
                     beach[5]["owner_url"] = owner_url
+                    
+                    if "owner_url" not in title_list:
+                        title_list.append("owner_url")
         
             else:
                 mod_title = title.text.replace(" ", "_").lower()
                 beach[5][mod_title] = value_soup[i].text
-
+                if mod_title not in title_list:
+                    title_list.append(mod_title)
                                      
             i+=1
 
 
     except Exception as e:
         print(f"Error processing: {beach[4]}, {e}")
-        beach[0] = "Not scraped"
+        
+#    print(beach)
+
+#print(title_list)    
+#print(beach_urls[0])
 
 
-# connect to SQL database
-engine = create_engine(f"postgresql://{username}:{password}@ec2-54-87-34-201.compute-1.amazonaws.com:5432/ddh5sm9o0kv98b")
-connection = engine.connect()
 
-# Reflect an existing database into a new model
-Base = automap_base()
-Base.prepare(engine, reflect=True)
+########################################
+# CREATE OBJECT FOR BUILDING DATAFRAME #
+########################################
+# define static portion of beach dictionary
+beach_data = {"region": [], "county": [], "area": [], "beach_name": [], "beach_url": []}
 
-# create references to our tables
-Beaches = Base.classes.beaches
-
-# initiate a database session
-session = Session(connection)
-
-# clear database before dump
-session.query(Beaches).delete()
-session.commit()
-
-# initialize empty list of data titles
-title_list = ["address", "city", "state", "zip", "latitude", "longitude", "park_name", "owner", "owner_url", "activities", "amenities", "pet_policy", "fees", "phone", "other_names"]
-
+# loop through list of all titles found across all beaches
+# and add a dictionary to the beach data
+for title in title_list:
+    beach_data[title] = []
 
 # loop through all the beaches we scraped
 for beach in beach_urls:
-    if beach[0] != "Not scraped":
     
-        for title in title_list:
-            if title not in beach[5]:   
-                 beach[5][title] = ""
-                    
-        if "No " in beach[5]["pet_policy"] or "not allowed" in beach[5]["pet_policy"]:
-            # no pets allowed
-            pets_allowed = "N"
-        else:
-            pets_allowed = "Y"
-            
-        if "free" not in beach[5]["fees"] and "Free" not in beach[5]["fees"]:
-            # free parking somewhere near beach
-            free_parking = "N"
-        else:
-            free_parking = "Y"
+    # add data to appropriate lists
+    beach_data["region"].append(beach[0])
+    beach_data["county"].append(beach[1])
+    beach_data["area"].append(beach[2])
+    beach_data["beach_name"].append(beach[3])
+    beach_data["beach_url"].append(beach[4])
     
-        # add data to database
-        new_beach = Beaches(region = beach[0], county = beach[1], area = beach[2], beach_name = beach[3], \
-                        beach_url = beach[4], address = beach[5]["address"], city = beach[5]["city"], \
-                        state = beach[5]["state"], zip = beach[5]["zip"], latitude = beach[5]["latitude"], \
-                        longitude = beach[5]["longitude"], park_name = beach[5]["park_name"], \
-                        owner = beach[5]["owner"], owner_url = beach[5]["owner_url"], \
-                        activities = beach[5]["activities"], amenities = beach[5]["amenities"], \
-                        pet_policy = beach[5]["pet_policy"], pets_allowed = pets_allowed, fees = beach[5]["fees"], \
-                        free_parking = free_parking, phone = beach[5]["phone"], other_names = beach[5]["other_names"])
-    
+    for title in title_list:
+        if title in beach[5]:
+            beach_data[title].append(beach[5][title])
+        else:    
+            beach_data[title].append("")
 
-        session.add(new_beach)
-        
-session.commit()
 
-session.close()
+###################
+# BUILD DATAFRAME #
+###################
+# dump data into dataframe
+beach_df = pd.DataFrame(beach_data)
+
+beach_df["pets_allowed"] = ""
+beach_df["free_parking"] = ""
+
+# write dataframe to a CSV file
+beach_df.to_csv("data/beach_info.csv")

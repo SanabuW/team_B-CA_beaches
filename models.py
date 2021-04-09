@@ -56,3 +56,4 @@ def create_grade_classes(db):
         def __repr__(self):
             return '<Grade_data %r>' % (self.name1)
     return Grade_data
+
