@@ -177,3 +177,42 @@ def latest_grades_query (session, Grade_data) :
     })
 
     return latest_grades_data
+
+
+def grades_query_geojson (session, Grade_data) :
+# Querying for all grade beach data
+    geojson_grades_results = session.query(
+        Grade_data.id,
+        Grade_data.json_id,
+        Grade_data.name1,
+        Grade_data.latitude,
+        Grade_data.longitude,
+        Grade_data.grade_updated,
+        Grade_data.dry_grade
+        ).all()
+
+    grades_data = []
+    for grades_info in geojson_grades_results:
+        grades_data.append(
+            {
+            "type":"Feature",
+            "properties":{
+                "id": grades_info[0],
+                "json_id": grades_info[1],
+                "beach_name":grades_info[2],
+                "grade": grades_info[6],
+                "time": grades_info[5]
+            },
+            "geometry":{
+                "type": "Point",
+                "coordinates":[
+                    grades_info[4],
+                    grades_info[3]
+                ]
+            }
+    })
+    grades_data_geojson = ({
+        "type": "FeatureCollection",
+        "features": grades_data
+    })
+    return grades_data_geojson
