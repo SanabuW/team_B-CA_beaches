@@ -1,4 +1,4 @@
-from sqlalchemy import func
+from sqlalchemy import func, distinct
 
 def beach_query (session, Beaches) :
 # Querying for all general beach data
@@ -177,3 +177,48 @@ def latest_grades_query (session, Grade_data) :
     })
 
     return latest_grades_data
+
+def unq_years_query (session, Grade_data) :
+# Querying for unique years in grade data
+    grades_results = session.query(
+        distinct(func.date_part('YEAR', Grade_data.grade_updated)))
+
+    years_data = []
+    for grades_info in grades_results:
+        years_data.append(int(grades_info[0]))
+
+    years_data.sort()
+
+    return years_data
+
+def count_by_year (session, Grade_data, year) :
+# Querying for unique years in grade data
+
+    grade_values = ["A+", "A", "B", "C", "D", "F"]
+
+    count_data = []
+    for month in range(1,13):
+        for grade in grade_values:
+            grades_results = (session.query (
+                func.count(Grade_data.id))
+                .filter(func.date_part('YEAR', Grade_data.grade_updated) == int(year))
+                .filter(func.date_part('MONTH', Grade_data.grade_updated) == month)
+                .filter(Grade_data.dry_grade == grade)).scalar()
+
+            # append grade, month number, and count of dry grades
+            count_data.append([grade, month, grades_results])
+            session.commit()
+
+
+            grades_results = (session.query (
+                func.count(Grade_data.id))
+                .filter(func.date_part('YEAR', Grade_data.grade_updated) == int(year))
+                .filter(func.date_part('MONTH', Grade_data.grade_updated) == month)
+                .filter(Grade_data.wet_grade == grade)).scalar()
+
+            # append count of wet grades to list
+            count_data[-1].append(grades_results)
+            session.commit()
+
+    return count_data
+
