@@ -1,4 +1,4 @@
-from sqlalchemy import func
+from sqlalchemy import func, distinct
 
 def beach_query (session, Beaches) :
 # Querying for all general beach data
@@ -208,17 +208,17 @@ def count_by_year (session, Grade_data, year) :
             # append grade, month number, and count of dry grades
             count_data.append([grade, month, grades_results])
             session.commit()
-            
+
 
             grades_results = (session.query (
                 func.count(Grade_data.id))
                 .filter(func.date_part('YEAR', Grade_data.grade_updated) == int(year))
                 .filter(func.date_part('MONTH', Grade_data.grade_updated) == month)
                 .filter(Grade_data.wet_grade == grade)).scalar()
-            
+
             # append count of wet grades to list
             count_data[-1].append(grades_results)
             session.commit()
 
-
     return count_data
+

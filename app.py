@@ -77,7 +77,7 @@ def grades():
 def latest_grades():
     Latest_grades_output = latest_grades_query(session, Grade_data)
     return jsonify(Latest_grades_output)
-	
+
 @app.route("/api/years")
 def years():
     Years_output = unq_years_query(session, Grade_data)
