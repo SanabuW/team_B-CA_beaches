@@ -1,5 +1,3 @@
-
-
 function timelapseCreator (grades_geojson) {
           function grade_changer(letter_grade) {
               //for each value

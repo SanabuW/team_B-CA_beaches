@@ -2,12 +2,13 @@
 // BEGIN MAIN //
 // //////////////
 Promise.all([
-    d3.json("/api/grades_geojson"),
-    // d3.json("/api/years"),
-]).then((result) => {
+    d3.json("/api/years"),
+    d3.json("/api/grades_geojson")
 
-    var timelapse_geojson = result[0]
-    // var yearsList = result[1]
+]).then((result) => {
+    //MAY NEED CHANGING
+    var yearsList = result[0]
+    var timelapse_geojson = result[1]
 
 /**============================================
  *  PROMISE DATA HANDLING FOR TIMELAPSE MAP
@@ -15,23 +16,30 @@ Promise.all([
 
     timelapseCreator(timelapse_geojson);
 
-// /**============================================
-//  *  PROMISE DATA HANDLING FOR TIME CHART
-//  *=============================================**/
-//     console.log("building dropdown from:")
-//     console.log(yearsList);
+/**============================================
+ *  PROMISE DATA HANDLING FOR TIME CHART
+ *=============================================**/
+    // create 3D bar chart
+    gradeBarCreator(yearsList);
 
-//     // use ids to generate our dropdown menu
-//     buildDropdown(yearsList[0]);
 
-//     // initialize page with data
-//     optionChanged(yearsList[0][0], "dry");
 
-//     // Getting a reference to the button on the page
-//     //  with the id property set to filter-btn
-//     var button = d3.select("#filter-btn");
+    // PREVIOUS CODE
+    // console.log("building dropdown from:")
+    // console.log(yearsList);
 
-//     // Create event handler for clicking the button
-//     button.on("click", runEnter);
+    // // use ids to generate our dropdown menu
+    // buildDropdown(yearsList[0]);
+
+    // // initialize page with data
+    // optionChanged(yearsList[0][0], "dry");
+
+    // // Getting a reference to the button on the page
+    // //  with the id property set to filter-btn
+    // var button = d3.select("#filter-btn");
+
+    // // Create event handler for clicking the button
+    // button.on("click", runEnter);
+
 
 });
