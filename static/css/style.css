@@ -38,11 +38,13 @@ label {
 #viz1{
 
     border:1px solid;
-    border-color:black
+    border-color:black;
+    background-color: darkgrey;
 }
 
 #viz3{
-    width: 100%;
+    width: 900px;
+    height: 500px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.9);
 }
 

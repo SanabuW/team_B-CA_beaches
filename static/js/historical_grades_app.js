@@ -43,7 +43,3 @@ Promise.all([
 ​
 ​
 });
-Collapse
-
-
-
