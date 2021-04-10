@@ -12,8 +12,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
 # Query functions to be applied to the separate api routes
-from data_query import beach_query, grades_query, grades_dummy_query, latest_grades_query, grades_query_geojson
-
+from data_query import beach_query, grades_query, grades_dummy_query, latest_grades_query, unq_years_query, count_by_year, grades_query_geojson
 
 
 # For secure/live ops version deployment
@@ -83,6 +82,16 @@ def grades_geojson():
     grades_geojson_output = grades_query_geojson(session, Grade_data)
     return jsonify(grades_geojson_output)
 
+@app.route("/api/years")
+def years():
+    Years_output = unq_years_query(session, Grade_data)
+    return jsonify(Years_output)
+
+@app.route("/api/count/<year>")
+def getCountsByYear(year):
+    Count_output = count_by_year(session, Grade_data, year)
+    return jsonify(Count_output)
+
 # @app.route("/api/grades_dummy")
 # def grades_dummy():
 #     Grades_dummy_output = grades_dummy_query(session, Grade_data_dummy)
@@ -91,3 +100,4 @@ def grades_geojson():
 # Run app
 if __name__ == "__main__":
     app.run()
+
