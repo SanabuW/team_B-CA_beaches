@@ -137,7 +137,7 @@ function countGrades(data, yearChosen) {
 		console.log(data);
 	
 
-		barChart3D(data, yearChosen);
+		barChart3D(data, yearChosen, whichGrade);
 
 
 	});
