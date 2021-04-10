@@ -135,12 +135,12 @@ function countGrades(data, yearChosen) {
 
 
 		console.log(data);
-	
+
 
 		barChart3D(data, yearChosen);
 
-		
-		d3.select("#gradeType").on("change", changeColor )
+
+		// d3.select("#gradeType").on("change", changeColor )
 
 	});
 
@@ -161,7 +161,7 @@ function runEnter() {
   	// Get the value property of the input element
   	var whichGrade = radioElement.property("value");
 
-	  optionChanged(yearChosen, whichGrade);
+	optionChanged(yearChosen, whichGrade);
 
 
 }

@@ -102,7 +102,7 @@ function barChart3D(data, yearChosen) {
 		chart.container('viz3');
 		
 		// initiate chart drawing
-			  chart.draw();
+		chart.draw();
 
     });
 }

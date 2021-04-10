@@ -1,40 +1,53 @@
-// Function to translate letter grades to numerical values
+/* data routes */
+const beaches_url = "/api/beaches";
+const grades_url = "/api/grades";
+const grades_dummy_url = "/api/grades_dummy";
+const latest_grades_url = "/api/latest_grades";
+
+//     Promise.all([
+//         d3.json(beaches_url),
+//         d3.json(grades_url),
+//         d3.json(grades_dummy_url)
+//         ]).then(function(data) {
+//             console.log(data)
+// });
 function grade_changer(letter_grade) {
-    var grade
-    if (letter_grade == "A+") {
-        grade = 15;
-    } else if (letter_grade == "A") {
-        grade = 14;
-    } else if (letter_grade == "A-") {
-        grade = 13;
-    } else if (letter_grade == "B+") {
-        grade = 12;
-    } else if (letter_grade == "B") {
-        grade = 11;
-    } else if (letter_grade == "B-") {
-        grade = 10;
-    } else if (letter_grade == "C+") {
-        grade = 9;
-    } else if (letter_grade == "C") {
-        grade = 8;
-    } else if (letter_grade == "C-") {
-        grade = 7;
-    } else if (letter_grade == "D+") {
-        grade = 6;
-    } else if (letter_grade == "D") {
-        grade = 5;
-    } else if (letter_grade == "D-") {
-        grade = 4;
-    } else if (letter_grade == "F+") {
-        grade = 3;
-    } else if (letter_grade == "F") {
-        grade = 2;
-    } else if (letter_grade == "F-") {
-        grade = 1;
-    } else {
-        grade = 0;
-    }
-    return grade
+//for each value
+var grade
+if (letter_grade == "A+") {
+	grade = 15;
+} else if (letter_grade == "A") {
+	grade = 14;
+} else if (letter_grade == "A-") {
+	grade = 13;
+} else if (letter_grade == "B+") {
+	grade = 12;
+} else if (letter_grade == "B") {
+	grade = 11;
+} else if (letter_grade == "B-") {
+	grade = 10;
+} else if (letter_grade == "C+") {
+	grade = 9;
+} else if (letter_grade == "C") {
+	grade = 8;
+} else if (letter_grade == "C-") {
+	grade = 7;
+} else if (letter_grade == "D+") {
+	grade = 6;
+} else if (letter_grade == "D") {
+	grade = 5;
+} else if (letter_grade == "D-") {
+	grade = 4;
+} else if (letter_grade == "F+") {
+	grade = 3;
+} else if (letter_grade == "F") {
+	grade = 2;
+} else if (letter_grade == "F-") {
+	grade = 1;
+} else {
+	grade = 0;
+}
+return grade
 }
 
 

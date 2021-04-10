@@ -57,9 +57,17 @@ Grade_data_dummy = Base.classes.grade_data_dummy
 ####################################
 @app.route("/")
 def home():
-    results = session.query(Grade_data_dummy.id, Grade_data_dummy.beach_name).first()
-    print(results)
-    return render_template("index.html", text1 = "jinja test1", text2 = results)
+    return render_template("index.html")
+
+
+@app.route("/currwq.html")
+def currwq():
+    return render_template("currwq.html")
+
+
+@app.route("/histwq.html")
+def histwq():
+    return render_template("histwq.html")
 
 # Routes for data queries to be used by JS apps
 @app.route("/api/beaches")
