@@ -71,9 +71,12 @@ function icon_generator(grade_info){
         m_color = 'yellow'
     } else if (grade_info >= 4) {
         m_color = 'orange'
-    } else {
+    } else if (grade_info >= 0) {
         m_color = 'red'
+    } else {
+        m_color = 'black'
     }
+
 
     // Definition for markers using Extra-markers plugin
     const newMarker = L.ExtraMarkers.icon({

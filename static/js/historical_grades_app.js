@@ -5,10 +5,10 @@ Promise.all([
     d3.json("/api/years"),
     d3.json("/api/grades_geojson")
 
-]).then((result) => {
+]).then((yearsList) => {
+    console.log(yearsList)
     //MAY NEED CHANGING
-    var yearsList = result[0]
-    var timelapse_geojson = result[1]
+    var timelapse_geojson = yearsList[1]
 
 /**============================================
  *  PROMISE DATA HANDLING FOR TIMELAPSE MAP

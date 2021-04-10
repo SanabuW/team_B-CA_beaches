@@ -8,7 +8,7 @@
     <title>CA Beaches App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 
 
 
@@ -60,7 +60,21 @@
 
         </div>
 
-        <div id="viz1" class="col-md-4">viz1</div>
+        <div id="viz1" class="col-md-4">
+            <div>
+                <form id="form">
+                    <div class="form-group">
+                        <label for="year">Select Sample Year: </label>
+                        <select id="selYear" ></select>
+                        <div id="gradeType">
+                            <input type="radio" name="gradeType" value="dry" checked> Dry Grades<br>
+                            <input type="radio" name="gradeType" value="wet"> Wet Grades<br>
+                        </div>
+                    </div>
+                    <button id="filter-btn" type="button" class="btn btn-default">Enter</button>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div id="viz2" class="col-md-6">
@@ -75,8 +89,20 @@
     <!-- <script src="../static/js/app.js"></script> -->
     <!-- <script src="../static/js/combined_grade_viz.js"></script> -->
     <!-- <script src="../static/js/grade_map_app.js"></script> -->
+
     <script src="../static/js/historical_grades_app.js"></script>
+
+
+    <script src="../static/js/barChart3D.js"></script>
+    <script src="../static/js/dropDown.js"></script>
+
+
+    <script src="../static/js/gradeBar.js"></script>
     <script src="../static/js/grade_map_timelapes_app.js"></script>
+
+
+
+    <script src="../static/js/grade_map_app.js"></script>
 
 </body>
 

@@ -189,7 +189,7 @@ def grades_query_geojson (session, Grade_data) :
         Grade_data.longitude,
         Grade_data.grade_updated,
         Grade_data.dry_grade
-        ).all()
+        ).filter(Grade_data.grade_updated > '2021-01-01').all()
 
     grades_data = []
     for grades_info in geojson_grades_results:
@@ -216,6 +216,9 @@ def grades_query_geojson (session, Grade_data) :
         "features": grades_data
     })
     return grades_data_geojson
+
+
+
 def unq_years_query (session, Grade_data) :
 # Querying for unique years in grade data
     grades_results = session.query(

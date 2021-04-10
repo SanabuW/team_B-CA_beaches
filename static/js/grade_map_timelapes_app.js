@@ -70,8 +70,10 @@ function timelapseCreator (grades_geojson) {
                 m_color = 'yellow'
             } else if (grade_info >= 4) {
                 m_color = 'orange'
-            } else {
+            } else if (grade_info >= 0) {
                 m_color = 'red'
+            } else {
+                m_color = 'black'
             }
           }
 
@@ -81,7 +83,7 @@ function timelapseCreator (grades_geojson) {
 
               return {
                 start: beach.properties.time_millisec,
-                end: beach.properties.time_millisec + 86300000,
+                end: beach.properties.time_millisec + 172600000,
               };
             };
             var timelineControl = L.timelineSliderControl({
@@ -97,6 +99,10 @@ function timelapseCreator (grades_geojson) {
                 var hue_max = 0;
                 var hue =
                   (data.properties.dry_grade_num / 15) * (hue_min - hue_max) + hue_max;
+                // var color_val
+                // if (data.properties.dry_grade_num = 0) {
+                //   color_val = "hsl(0, 100%, 50%)"
+                // } else {color_val = "hsl(" + hue + ", 100%, 50%)"}
                 return L.circleMarker(latlng, {
                   radius: 10,
                   color: "hsl(" + hue + ", 100%, 50%)",
