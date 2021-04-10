@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CA Beaches App</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 
     <!-- D3 Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
@@ -39,28 +41,75 @@
 
 <body>
 
-<div class="container" id="master_cont" >
-    <div class="row">
-        <div id="mapviz" class="col-md-8">mapviz
-            <div id="info_pull_test">test</div>
-            <div id="jinja_test">{{text1}}</div>
-            <div id="jinja_test">{{text2}}</div>
-            <div id="js_app_test"></div>
-
+    <!-- begin navbar setup -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: darkslategrey;">
+        <!-- navbar brand always brings us back to the main page -->
+        <a class="navbar-brand" href="index.html"><h1><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-brightness-alt-high" viewBox="0 0 16 16">
+            <path d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3zm8 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zm-13.5.5a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1h2zm11.157-6.157a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.9 2.121a.5.5 0 0 0 .707-.707L3.05 5.343a.5.5 0 1 0-.707.707l1.414 1.414zM8 7a4 4 0 0 0-4 4 .5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5 4 4 0 0 0-4-4zm0 1a3 3 0 0 1 2.959 2.5H5.04A3 3 0 0 1 8 8z"/>
+          </svg>  Cali Beaches</h1>
+        </a> 
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="current_wquality.html">Latest Water Quality</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="hist_wquality.html">Historical Water Quality</a>
+            </li>         
+          </ul>
         </div>
+    </nav>
 
-        <div id="viz1" class="col-md-4">viz1</div>
+    <!-- page content will be in a container that fills the page horizontally -->
+    <!-- we will create one row, and break that row into 2 columns, 8 segments -->
+    <!-- to the left, and 4 to the right for the sidebar                      -->
+    <div class="container-fluid">
+		<div class="row">
+			<div class="jumbotron" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://images.unsplash.com/photo-1473221326025-9183b464bb7e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80)">
+			  <div class="container">
+				<h1 class="text-center">Cali Beaches</h1>
+				<p class="text-center">Exploring the California Coast</p>
+			</div>
+		  </div>
+        <div class="row">
+            <!-- page content goes in the left container -->
+            <div class="col-sm-12 col-md-8">
+                <br>
+                <h1 class="text-xs-left">Find Your Beach</h1>
+				<div class="mapviz"></div>
+            </div>
+            <!-- visualizations sidebar goes in the right container -->
+            <div class="col-sm-12 col-md-4 sidebar">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <a href="current_wquality.html"><img class="thumbnail_img" src="assets\LatvMax Temp_scatter01-07-2021.png" alt="Current Quality"></a>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <a href="wp_latvshum.html"><img class="thumbnail_img" src="visualizations\LatvHumidity_scatter01-07-2021.png" alt="Lat vs Temp"></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <a href="wp_latvscloud.html"><img class="thumbnail_img" src="visualizations\LatvCloudiness_scatter01-07-2021.png" alt="Lat vs Temp"></a>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <a href="wp_latvswind.html"><img class="thumbnail_img" src="visualizations\LatvWind Speed_scatter01-07-2021.png" alt="Lat vs Temp"></a>                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <div id="viz2" class="col-md-6">viz2</div>
-        <div id="viz3" class="col-md-6">
-            <div id="latest_grades_viz"></div>
-    </div>
-</div>
+
+
+    <!-- bootstrap jquery code to make minor animations work -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
 
     <!-- App scripts -->
     <!-- <script src="../static/js/app.js"></script> -->
-    <script src="../static/js/grade_map_app.js"></script>
+    <!-- <script src="../static/js/grade_map_app.js"></script> -->
 
 </body>
 
