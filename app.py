@@ -12,11 +12,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
 # Query functions to be applied to the separate api routes
-<<<<<<< HEAD
 from data_query import beach_query, grades_query, grades_dummy_query, latest_grades_query, unq_years_query, count_by_year
-=======
-from data_query import beach_query, grades_query, grades_dummy_query, latest_grades_query
->>>>>>> main
 
 
 

@@ -139,8 +139,6 @@ function countGrades(data, yearChosen) {
 
 		barChart3D(data, yearChosen);
 
-		
-		d3.select("#gradeType").on("change", changeColor )
 
 	});
 
