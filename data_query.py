@@ -176,7 +176,6 @@ def latest_grades_query (session, Grade_data) :
             "grade_created": grades_info.grade_created
     })
 
-<<<<<<< HEAD
     return latest_grades_data
 
 def unq_years_query (session, Grade_data) :
@@ -223,6 +222,4 @@ def count_by_year (session, Grade_data, year) :
 
 
     return count_data
-=======
-    return latest_grades_data
->>>>>>> main
+
