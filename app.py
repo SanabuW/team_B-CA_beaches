@@ -81,7 +81,6 @@ def grades():
 def latest_grades():
     Latest_grades_output = latest_grades_query(session, Grade_data)
     return jsonify(Latest_grades_output)
-<<<<<<< HEAD
 	
 @app.route("/api/years")
 def years():
@@ -93,8 +92,6 @@ def getCountsByYear(year):
     Count_output = count_by_year(session, Grade_data, year)
     return jsonify(Count_output)
 
-=======
->>>>>>> main
 
 @app.route("/api/grades_dummy")
 def grades_dummy():
