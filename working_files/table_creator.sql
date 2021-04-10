@@ -48,29 +48,3 @@ CREATE TABLE grade_data (
 	annual_year VARCHAR,
 	grade_created DATE
 );
-
-
--- OLD GRADE TABLE CREATION SCRIPT
--- CREATE TABLE grade_data (
--- 	id SERIAL PRIMARY KEY,
--- 	json_id INT,
--- 	title VARCHAR,
--- 	name1 VARCHAR,
--- 	latitude VARCHAR,
--- 	longitude VARCHAR,
--- 	address VARCHAR,
--- 	city VARCHAR,
--- 	county VARCHAR,
--- 	state VARCHAR,
--- 	zip VARCHAR,
--- 	active VARCHAR,
--- 	grade_updated VARCHAR,
--- 	dry_grade VARCHAR,
--- 	wet_grade VARCHAR,
--- 	annual_summer_dry VARCHAR,
--- 	annual_year_wet VARCHAR,
--- 	annual_winter_dry VARCHAR,
--- 	annual_year VARCHAR,
--- 	grade_created VARCHAR,
--- 	alerts VARCHAR
--- );
