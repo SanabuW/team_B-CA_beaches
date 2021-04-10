@@ -161,7 +161,7 @@ function runEnter() {
   	// Get the value property of the input element
   	var whichGrade = radioElement.property("value");
 
-	  optionChanged(yearChosen, whichGrade);
+	optionChanged(yearChosen, whichGrade);
 
 
 }

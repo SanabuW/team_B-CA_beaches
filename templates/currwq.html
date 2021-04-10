@@ -29,7 +29,11 @@
     integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
     crossorigin=""></script>
 
+    <!-- Icons -->
+    <link rel="stylesheet" href="static/css/leaflet.extra-markers.min.css">
 
+    <!-- ExtraMarkers Plugin -->
+    <script src="static/js/leaflet.extra-markers.min.js"></script>	
 	
 </head>
 
@@ -53,14 +57,14 @@
 	<div class="container-fluid">
 		<div class="jumbotron" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://images.unsplash.com/photo-1520242279429-1f64b18816ef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)">
 			<div class="container">
-		  	<h1 class="display-4">Cali Beaches</h1>
-		  	<p class="lead">Exploring the beaches of California</p>
+		  	<h1 class="display-4">Current Water Quality Grades</h1>
+		  	<p class="lead">Know what you're getting into</p>
 			</div>
 	  	</div>
-		<div class="container-fluid"> 
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-8">
-					<h4>Find your beach.</h4>
+					<h4>Click to see current water quality grades.</h4>
 					<div id="mapviz">
 					</div>
 				</div>
@@ -80,7 +84,7 @@
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -88,7 +92,8 @@
 	
 	<!-- team B code -->
 	<script type="text/javascript" src="../static/js/config.js"></script>
-    <script src="../static/js/app.js"></script>
+	<script src="../static/js/grade_map_app.js"></script>
+
 
 </body>
 
