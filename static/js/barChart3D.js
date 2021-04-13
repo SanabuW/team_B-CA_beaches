@@ -1,7 +1,11 @@
 
+function capitalizeFirstLetter(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 
 // layout the page with the selected subject id
-function barChart3D(data, yearChosen) {
+function barChart3D(data, yearChosen, whichGrade) {
 
 	const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -49,7 +53,7 @@ function barChart3D(data, yearChosen) {
 		chart.padding([10, 40, 5, 20]);
 
 		// set chart title text settings
-		chart.title('New Samples Taken in ' + yearChosen);
+		chart.title(`New ${capitalizeFirstLetter(whichGrade)} Grade Samples Taken in ${yearChosen}`);
 		// set titles for axises
 		chart.xAxis().title('Date');
 		chart.yAxis().title('Number of Samples Taken');
