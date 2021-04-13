@@ -101,7 +101,9 @@ const latest_grades_url = "/api/latest_grades";
             for (var i = 0; i < latest_grades_obj.length; i++) {
                 // Converting letter grades to numerical values
                 latest_grades_obj[i].dry_grade_num = grade_changer(latest_grades_obj[i].dry_grade);
+                // Sending numerical value to varaible to use later for marker creation
                 grade_for_icon = latest_grades_obj[i].dry_grade_num;
+                // Creating actual marker
                 var newMarker = L.marker([latest_grades_obj[i].latitude, latest_grades_obj[i].longitude], {icon: icon_generator(grade_for_icon)})
                     .bindPopup(latest_grades_obj[i].name1 + "<hr> Grade: " + latest_grades_obj[i].dry_grade + "<br>" + latest_grades_obj[i].grade_updated)
                     .addTo(layers.grades_layer);
