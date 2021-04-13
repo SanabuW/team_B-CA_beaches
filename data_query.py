@@ -1,7 +1,8 @@
 from sqlalchemy import func, distinct
 
 def beach_query (session, Beaches) :
-# Querying for all general beach data
+# Querying for all general beach information (e.g. beach name, ameneties, address)
+# All field names (e.g. "Beaches.region") listed within beach_query and beaches_data for ease of use when building other queries
     beaches_results = session.query(
         Beaches.id,
         Beaches.region,
@@ -57,9 +58,8 @@ def beach_query (session, Beaches) :
     })
     return beaches_data
 
-
+# Querying for all water quality grade data
 def grades_query (session, Grade_data) :
-# Querying for all grade beach data
     grades_results = session.query(
         Grade_data.id,
         Grade_data.json_id,
@@ -107,49 +107,55 @@ def grades_query (session, Grade_data) :
     })
     return grades_data
 
-def grades_dummy_query (session, Grade_data_dummy) :
-    grades_dummy_results = session.query(
-        Grade_data_dummy.id,
-        Grade_data_dummy.beach_name,
-        Grade_data_dummy.latitude,
-        Grade_data_dummy.longitude,
-        Grade_data_dummy.date,
-        Grade_data_dummy.dry_grade,
-        Grade_data_dummy.wet_grade,
-        Grade_data_dummy.annual_summer_dry,
-        Grade_data_dummy.annual_year_wet,
-        Grade_data_dummy.annual_winter_dry,
-        Grade_data_dummy.annual_year
-        ).all()
 
-    grades_dummy_data = []
-    for grades_dummy_info in grades_dummy_results:
-        grades_dummy_data.append({
-            "id": grades_dummy_info[0],
-            "beach_name": grades_dummy_info[1],
-            "latitude": grades_dummy_info[2],
-            "longitude": grades_dummy_info[3],
-            "date": grades_dummy_info[4],
-            "dry_grade": grades_dummy_info[5],
-            "wet_grade": grades_dummy_info[6],
-            "annual_summer_dry": grades_dummy_info[7],
-            "annual_year_wet": grades_dummy_info[8],
-            "annual_winter_dry": grades_dummy_info[9],
-            "annual_year": grades_dummy_info[10]
-    })
+# Test query/output for early stage development
+# def grades_dummy_query (session, Grade_data_dummy) :
+#     grades_dummy_results = session.query(
+#         Grade_data_dummy.id,
+#         Grade_data_dummy.beach_name,
+#         Grade_data_dummy.latitude,
+#         Grade_data_dummy.longitude,
+#         Grade_data_dummy.date,
+#         Grade_data_dummy.dry_grade,
+#         Grade_data_dummy.wet_grade,
+#         Grade_data_dummy.annual_summer_dry,
+#         Grade_data_dummy.annual_year_wet,
+#         Grade_data_dummy.annual_winter_dry,
+#         Grade_data_dummy.annual_year
+#         ).all()
 
-    # return grades_dummy_data
-    return grades_dummy_data
+#     grades_dummy_data = []
+#     for grades_dummy_info in grades_dummy_results:
+#         grades_dummy_data.append({
+#             "id": grades_dummy_info[0],
+#             "beach_name": grades_dummy_info[1],
+#             "latitude": grades_dummy_info[2],
+#             "longitude": grades_dummy_info[3],
+#             "date": grades_dummy_info[4],
+#             "dry_grade": grades_dummy_info[5],
+#             "wet_grade": grades_dummy_info[6],
+#             "annual_summer_dry": grades_dummy_info[7],
+#             "annual_year_wet": grades_dummy_info[8],
+#             "annual_winter_dry": grades_dummy_info[9],
+#             "annual_year": grades_dummy_info[10]
+#     })
+
+#     # return grades_dummy_data
+#     return grades_dummy_data
 
 
+# Querying for latest beach grade data
 def latest_grades_query (session, Grade_data) :
-# Querying for all grade beach data
+
+    # Subquery to find the latest entry for a beach
     subq = session.query(func.max(Grade_data.id)).group_by(Grade_data.name1).all()
 
     id_list = []
     for x in subq:
         id_list.append(x[0])
 
+    # Query to find the result ids in the full list
+    # Used ".filter()" instead of ".where()" after sqlAlchemy downgrade to 1.3.18
     query = session.query(Grade_data).filter(Grade_data.id.in_(id_list)).all()
 
     latest_grades_data = []
@@ -179,6 +185,7 @@ def latest_grades_query (session, Grade_data) :
     return latest_grades_data
 
 
+# Query for timelapse map usiing Leaflet-timeline plugin
 def grades_query_geojson (session, Grade_data) :
 # Querying for all grade beach data
     geojson_grades_results = session.query(
@@ -189,8 +196,10 @@ def grades_query_geojson (session, Grade_data) :
         Grade_data.longitude,
         Grade_data.grade_updated,
         Grade_data.dry_grade
+        # Find all observations from 2021.01.01
         ).filter(Grade_data.grade_updated > '2021-01-01').all()
 
+# Assembling a geoJSON for Leaflet-timeline
     grades_data = []
     for grades_info in geojson_grades_results:
         grades_data.append(
@@ -216,7 +225,6 @@ def grades_query_geojson (session, Grade_data) :
         "features": grades_data
     })
     return grades_data_geojson
-
 
 
 def unq_years_query (session, Grade_data) :
