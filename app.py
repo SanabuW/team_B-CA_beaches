@@ -4,22 +4,21 @@
 from flask import (
     Flask,
     render_template,
-    jsonify,
-    request,
-    redirect)
+    jsonify
+)
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
+from config import username, password
 
 # Query functions to be applied to the separate api routes
-from data_query import beach_query, grades_query, grades_dummy_query, latest_grades_query, unq_years_query, count_by_year, grades_query_geojson
-
+from data_query import beach_query, grades_query, unq_years_query, latest_grades_query, count_by_year, grades_query_geojson
+# from data_query import grades_dummy_query
 
 # For secure/live ops version deployment
 from flask_sqlalchemy import SQLAlchemy
 from models import create_classes
 from models import create_grade_classes
-import os
 
 
 ####################################
@@ -31,43 +30,47 @@ app = Flask(__name__)
 ####################################
 # Setup database connection
 ####################################
-# # SECURE/LIVE OPS VERSION
-# # Set up database connection
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '').replace("://", "ql://", 1)
-# # Remove tracking modifications
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
-## WILL NEED TO CHECK IF THESE CLASSES ARE CORRECT
-# Beaches = create_classes(db)
-# Beach_grades = create_grade_classes(db)
-
 # DEV/EDUCATIONAL VERSION
-engine = create_engine("postgresql://ydpymkcqnwzgyh:4ff9574af72fa725ed0d902a2dcafc72636ecdfdc2745af2f871229ced540f5c@ec2-54-87-34-201.compute-1.amazonaws.com:5432/ddh5sm9o0kv98b")
+# Use SQLAlchemy to connect to postgreSQL server
+engine = create_engine("postgresql://" + username + ":" + password + "@ec2-54-87-34-201.compute-1.amazonaws.com:5432/ddh5sm9o0kv98b")
 conn = engine.connect()
 Base = automap_base()
 Base.prepare(engine, reflect=True)
 session = Session(bind=engine)
 Beaches = Base.classes.beaches
 Grade_data = Base.classes.grade_data
-Grade_data_dummy = Base.classes.grade_data_dummy
+# Test class
+# Grade_data_dummy = Base.classes.grade_data_dummy
+
+
+# # SECURE/LIVE OPS VERSION
+# # To be used if the online live app's login needs to be secure
+# # Set up database connection
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '').replace("://", "ql://", 1)
+# # Remove tracking modifications
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# db = SQLAlchemy(app)
+# # Will need to switch to using models.py to create classes instead of sqlAlchemy reflectiosn
+# Beaches = create_classes(db)
+# Beach_grades = create_grade_classes(db)
 
 
 ####################################
 # Create/Define Flask app routes
 ####################################
+# Front-end page routes
 @app.route("/")
 def home():
     return render_template("index.html")
-
 
 @app.route("/currwq.html")
 def currwq():
     return render_template("currwq.html")
 
-
 @app.route("/histwq.html")
 def histwq():
     return render_template("histwq.html")
+
 
 # Routes for data queries to be used by JS apps
 @app.route("/api/beaches")
@@ -100,6 +103,7 @@ def getCountsByYear(year):
     Count_output = count_by_year(session, Grade_data, year)
     return jsonify(Count_output)
 
+# Test route
 # @app.route("/api/grades_dummy")
 # def grades_dummy():
 #     Grades_dummy_output = grades_dummy_query(session, Grade_data_dummy)
