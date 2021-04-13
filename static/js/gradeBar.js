@@ -137,10 +137,8 @@ function countGrades(data, yearChosen) {
 		console.log(data);
 	
 
-		barChart3D(data, yearChosen);
+		barChart3D(data, yearChosen, whichGrade);
 
-		
-		d3.select("#gradeType").on("change", changeColor )
 
 	});
 
