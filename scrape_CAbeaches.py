@@ -19,6 +19,10 @@ browser = Browser('chrome', **executable_path, headless=True)
 # define our base URL
 base_url = "https://www.californiabeaches.com/beaches/"
 
+
+######################
+# first level scrape #
+######################
 # scrape the regions off the main beach page
 browser.visit(base_url)
 html = browser.html
@@ -57,6 +61,11 @@ for region in region_soup:
                 county_urls.append([region.title(), cnty.title(), county_url])
                 
 
+#print(len(county_urls))
+
+#######################
+# second level scrape #
+#######################
 # initialize empty area list
 area_urls = []    
 area_url = ""
@@ -89,8 +98,14 @@ for county in county_urls:
                 curr_area = x[-2]
                 curr_area = curr_area.replace("-", " ")
                 area_urls.append([county[0], county[1], curr_area.title(), area_url])
+                
+#print(area_urls)
+#print(len(area_urls))
 
 
+######################
+# third level scrape #
+######################
 # initialize empty beach list
 beach_urls = []    
 beach_url = ""
@@ -123,6 +138,8 @@ for area in area_urls:
                 curr_beach = curr_beach.replace("-", " ")
                 beach_urls.append([area[0], area[1], area[2], curr_beach.title(), beach_url])
                 
+#print(beach_urls[0])
+#print(len(beach_urls))
 
 for beach in beach_urls:
     
@@ -191,8 +208,15 @@ for beach in beach_urls:
     except Exception as e:
         print(f"Error processing: {beach[4]}, {e}")
         beach[0] = "Not scraped"
+        
+#    print(beach)
 
+#print(title_list)    
+#print(beach_urls[0])
 
+#################
+# load database #
+#################
 # connect to SQL database
 engine = create_engine(f"postgresql://{username}:{password}@ec2-54-87-34-201.compute-1.amazonaws.com:5432/ddh5sm9o0kv98b")
 connection = engine.connect()
@@ -247,7 +271,10 @@ for beach in beach_urls:
     
 
         session.add(new_beach)
-        
+
+##################################
+# commit all inserts to database #
+# ################################       
 session.commit()
 
 session.close()
