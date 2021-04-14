@@ -21,6 +21,14 @@ Beach Report Card: Available Data:
 - Dry Grade
 - Comments
 
+### Key Resources
+Presentation and report files can be found in the root direcotry of the repository
+-Report: Coastline CRUD.pptx
+-Presentation: Team B - BeachReport.docx
+
+### Directory Structure
+
+
 ### Questions
 
 ###### Who is our audience? 
