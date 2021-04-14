@@ -75,7 +75,8 @@ function timelapseCreator (grades_geojson) {
             // Create slider control
             var timelineControl = L.timelineSliderControl({
               formatOutput: function (date) {
-                // Truncate the date display for the time controller (Would display the full datetime to the second by default)
+                // Truncate the date display for the time controller to show year, month, day only
+                //   (Would display the full datetime to the second by default)
                 return new Date(date).toString().slice(4,15);
               },
             });
@@ -110,7 +111,8 @@ function timelapseCreator (grades_geojson) {
           for (var i = 0; i < grades_geojson.features.length; i++) {
             // Create a new key "dry_grade_num" and insert as its value an int corresponding to the letter grade
             grades_geojson.features[i].properties.dry_grade_num = grade_changer(grades_geojson.features[i].properties.grade);
-            // Pulling date format from postgreSQL outputs a string, whle Leaflet-timeline requires millisecond time. Converting string to millisecond time
+            // Pulling date format from postgreSQL outputs a string, whle Leaflet-timeline
+            //   requires millisecond time. Converting string to millisecond time
             var time_var = new Date(grades_geojson.features[i].properties.time.slice(5, 16))
             grades_geojson.features[i].properties.time_millisec = time_var.getTime();
           }

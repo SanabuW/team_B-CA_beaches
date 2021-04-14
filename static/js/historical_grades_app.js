@@ -20,6 +20,7 @@ Promise.all([
  *  PROMISE DATA HANDLING FOR TIME CHART
  *=============================================**/
     // create 3D bar chart
-    // Result of the queries was not separated to only the api/years query, to match data indexing of gradeBarCreator. Improvement point for later
+    // Result of the queries was not separated to only the api/years query, 
+    //   to match data indexing of gradeBarCreator. Improvement point for later
     gradeBarCreator(yearsList);
 });

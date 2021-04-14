@@ -1,5 +1,5 @@
+// Function to change each grade to a numerical value
 function grade_changer(letter_grade) {
-//for each value
 var grade
 if (letter_grade == "A+") {
 	grade = 15;
@@ -104,8 +104,10 @@ const latest_grades_url = "/api/latest_grades";
                 // Sending numerical value to varaible to use later for marker creation
                 grade_for_icon = latest_grades_obj[i].dry_grade_num;
                 // Creating actual marker
-                var newMarker = L.marker([latest_grades_obj[i].latitude, latest_grades_obj[i].longitude], {icon: icon_generator(grade_for_icon)})
-                    .bindPopup(latest_grades_obj[i].name1 + "<hr> Grade: " + latest_grades_obj[i].dry_grade + "<br>" + latest_grades_obj[i].grade_updated)
+                var newMarker = L.marker([latest_grades_obj[i].latitude, latest_grades_obj[i].longitude],
+                        {icon: icon_generator(grade_for_icon)})
+                    .bindPopup(latest_grades_obj[i].name1 + "<hr> Grade: " + latest_grades_obj[i].dry_grade +
+                        "<br>" + latest_grades_obj[i].grade_updated)
                     .addTo(layers.grades_layer);
                 newMarker.addTo(layers.grades_layer);
 
