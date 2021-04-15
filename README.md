@@ -2,7 +2,7 @@
 
 ## Final Report
 
-The final report is provided above, title Coastline CRUD.docx
+The final report is provided above, titled "Coastline CRUD.docx"
 
 ## Proposal
 
