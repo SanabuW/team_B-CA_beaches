@@ -23,8 +23,8 @@ Beach Report Card: Available Data:
 
 ### Key Resources
 Presentation and report files can be found in the root direcotry of the repository
--Report: Coastline CRUD.pptx
--Presentation: Team B - BeachReport.docx
+- Report: Coastline CRUD.pptx
+- Presentation: Team B - BeachReport.docx
 
 ### Directory Structure
 
