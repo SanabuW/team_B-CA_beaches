@@ -1,5 +1,9 @@
 # Beach Report - Team B
 
+## Final Report
+
+The final report is provided above, title Coastline CRUD.docx
+
 ## Proposal
 
 Group: Kate Spitzer, Sanabu Washizuka, Jonathan Hicks
