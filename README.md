@@ -26,12 +26,12 @@ Beach Report Card: Available Data:
 - Comments
 
 ### Key Resources
-Presentation and report files can be found in the root direcotry of the repository
+The base app file to run the app can be found in the root directory of the repository
+- app.py
+
+Presentation and report files can be found in the root directory as well
 - Report: Team B - BeachReport.docx
 - Presentation: Coastline CRUD.pptx
-
-### Directory Structure
-
 
 ### Questions
 
