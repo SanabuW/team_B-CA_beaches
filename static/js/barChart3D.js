@@ -12,7 +12,7 @@ function barChart3D(data, yearChosen, whichGrade) {
 
 
 	// clear tablespace
-	var barChart = d3.select("#viz3");
+	var barChart = d3.select("#barchart");
 	barChart.html("");
 
 
@@ -55,7 +55,7 @@ function barChart3D(data, yearChosen, whichGrade) {
 		// set chart title text settings
 		chart.title(`New ${capitalizeFirstLetter(whichGrade)} Grade Samples Taken in ${yearChosen}`);
 		// set titles for axises
-		chart.xAxis().title('Date');
+		chart.xAxis().title('Month');
 		chart.yAxis().title('Number of Samples Taken');
 
 		chart.yScale().minimum(0);
@@ -103,7 +103,7 @@ function barChart3D(data, yearChosen, whichGrade) {
 		chart.zAspect('10%').zPadding(20).zAngle(45).zDistribution(true);
 		
 		// set container id for the chart
-		chart.container('viz3');
+		chart.container('barchart');
 		
 		// initiate chart drawing
 		chart.draw();

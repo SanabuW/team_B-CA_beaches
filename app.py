@@ -63,13 +63,13 @@ Grade_data = Base.classes.grade_data
 def home():
     return render_template("index.html")
 
-@app.route("/currwq.html")
-def currwq():
-    return render_template("currwq.html")
+# @app.route("/currwq.html")
+# def currwq():
+#     return render_template("currwq.html")
 
-@app.route("/histwq.html")
-def histwq():
-    return render_template("histwq.html")
+# @app.route("/histwq.html")
+# def histwq():
+#     return render_template("histwq.html")
 
 
 # Routes for data queries to be used by JS apps

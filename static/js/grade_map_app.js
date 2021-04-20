@@ -43,7 +43,7 @@ return grade
         grades_layer: new L.LayerGroup()
     };
 
-    var myMap = L.map("mapviz", {
+    var myMap = L.map("latest_grades_viz", {
         center: [37.4131, -120.2870],
         zoom: 5,
         layers: [
