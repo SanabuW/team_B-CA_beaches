@@ -1270,10 +1270,6 @@
           this._makeButton(t, "pause"),
           this._makeButton(t, "next");
       },
-      //Addition here to get buttons on new line
-      _newline: function () {
-      this.d3.select(".leaflet-control-layers leaflet-control-layers-expanded leaflet-timeline-control leaflet-control").append("br");
-      },
       _disableMapDragging: function () {
         this.map.dragging.disable();
       },
