@@ -1223,8 +1223,6 @@
             this.options.enableKeyboardControls && this._addKeyListeners(),
             this._makeOutput(e);
         }
-        //Addition here to get buttons on new line
-        this.d3.select(".leaflet-control-layers leaflet-control-layers-expanded leaflet-timeline-control leaflet-control").append("br"),
         this._makeSlider(t),
           this.options.showTicks && this._buildDataList(t),
           this.options.autoPlay && this._autoPlay();
@@ -1271,6 +1269,10 @@
           this._makeButton(t, "play"),
           this._makeButton(t, "pause"),
           this._makeButton(t, "next");
+      },
+      //Addition here to get buttons on new line
+      _newline: function () {
+      d3.select(".leaflet-control-layers leaflet-control-layers-expanded leaflet-timeline-control leaflet-control").append("br");
       },
       _disableMapDragging: function () {
         this.map.dragging.disable();
