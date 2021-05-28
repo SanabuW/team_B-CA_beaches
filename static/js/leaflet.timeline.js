@@ -1218,14 +1218,13 @@
         );
         if (((this.container = t), this.options.enablePlayback)) {
           var e = i.DomUtil.create("div", "sldr-ctrl-container", t),
-            n = i.DomUtil.create("div", "button-container", e),
-            newbreak = div.append("br");
+            n = i.DomUtil.create("div", "button-container", e);
           this._makeButtons(n),
-          //Addition here to get buttons on new line
-          newbreak,
             this.options.enableKeyboardControls && this._addKeyListeners(),
             this._makeOutput(e);
         }
+        //Addition here to get buttons on new line
+        d3.select(".sldr-ctrl-container").append("br"),
         this._makeSlider(t),
           this.options.showTicks && this._buildDataList(t),
           this.options.autoPlay && this._autoPlay();
