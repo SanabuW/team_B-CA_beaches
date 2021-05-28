@@ -1221,7 +1221,7 @@
             n = i.DomUtil.create("div", "button-container", e);
           this._makeButtons(n),
           //Addition here to get buttons on new line
-          this.append("br"),
+          div.append("br"),
             this.options.enableKeyboardControls && this._addKeyListeners(),
             this._makeOutput(e);
         }
