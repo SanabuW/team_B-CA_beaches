@@ -1218,10 +1218,11 @@
         );
         if (((this.container = t), this.options.enablePlayback)) {
           var e = i.DomUtil.create("div", "sldr-ctrl-container", t),
-            n = i.DomUtil.create("div", "button-container", e);
+            n = i.DomUtil.create("div", "button-container", e),
+            newbreak = div.append("br");
           this._makeButtons(n),
           //Addition here to get buttons on new line
-          div.append("br"),
+          newbreak,
             this.options.enableKeyboardControls && this._addKeyListeners(),
             this._makeOutput(e);
         }
