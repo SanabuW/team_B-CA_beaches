@@ -1224,7 +1224,7 @@
             this._makeOutput(e);
         }
         //Addition here to get buttons on new line
-        d3.select(".leaflet-control-layers").append("br"),
+        d3.select(".leaflet-control-layers leaflet-control-layers-expanded leaflet-timeline-control leaflet-control").append("br"),
         this._makeSlider(t),
           this.options.showTicks && this._buildDataList(t),
           this.options.autoPlay && this._autoPlay();
