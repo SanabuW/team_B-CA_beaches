@@ -1272,7 +1272,7 @@
       },
       //Addition here to get buttons on new line
       _newline: function () {
-      d3.select(".leaflet-control-layers leaflet-control-layers-expanded leaflet-timeline-control leaflet-control").append("br");
+      this.d3.select(".leaflet-control-layers leaflet-control-layers-expanded leaflet-timeline-control leaflet-control").append("br");
       },
       _disableMapDragging: function () {
         this.map.dragging.disable();
