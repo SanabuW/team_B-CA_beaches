@@ -6,7 +6,7 @@ A web application that includes a database repository and dashboard that uses ge
 A final report is provided above, titled "Coastline CRUD.docx"
 
 Live Web App: https://project-two-jh-ks-sw.herokuapp.com/
-<img src="misc_resources/readme_images/app_001.png" width="800"/>
+<br><br><img src="misc_resources/readme_images/app_001.png" width="800"/>
 
 
 ## App/Files Workflow
@@ -26,7 +26,7 @@ All webscraping is performed through Python and BeautifulSoup. General beach inf
 
 #### SQL Database
 The SQL database consists of two separate tables. "beaches" contains the general beach information, while "grade_data" contains the water quality data.<br>
-<img src="misc_resources/readme_images/sql_001.png" width="200"/> <img src="misc_resources/readme_images/sql_002.png" width="200"/>
+<img src="misc_resources/readme_images/sql_002.png" width="200"/> <img src="misc_resources/readme_images/sql_001.png" width="200"/>
 
 
 #### App Infrastructure
