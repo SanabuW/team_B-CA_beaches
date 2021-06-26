@@ -48,7 +48,7 @@ Current water quality grades on the beaches are displayed as colored map markers
 
 
 ##### Historical Water Quality Info
-A timelapse map visualization shows markers as water quality recordings, using the Leaflet-timeline plugin for Leaflet.js. The colors represent the water quality (green=good, red=poor).
+A timelapse map visualization shows markers as water quality recordings, using the Leaflet-timeline plugin for Leaflet.js. The colors represent the water quality (green=good, red=poor).<br>
 <img src="misc_resources/readme_images/app_004.gif" width="600"/>
 
 
