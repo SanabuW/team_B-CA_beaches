@@ -1,64 +1,52 @@
-# Beach Report - Team B
+# California Beach Water Quality Report
 
-## Final Report
+## Summary
+A web application that includes a database repository and dashboard that uses geomapped visualizations to illustrate water quality of beaches along the California coastline. This repository also includes script that performs webscraping to retrieve the data.
 
-The final report is provided above, titled "Coastline CRUD.docx"
+A final report is provided above, titled "Coastline CRUD.docx"
 
-## Proposal
+Live Web App: https://project-two-jh-ks-sw.herokuapp.com/
 
-Group: Kate Spitzer, Sanabu Washizuka, Jonathan Hicks
+## App/Files Workflow
+### Data Retrieval and Description
+The app showcases two sets of data in general:
+1. General information about the beach and its amenities (e.g. address, parking, pet policy)<br>
+Source: https://www.californiabeaches.com/beaches/
 
-Tools: HTML, JS, Leaflet, Plotly, Leaflet time data plugins (LeafletPlayback, Leaflet.timeline)
+2. Water quality data<br>
+Historical data source: https://beachreportcard.org/<br>
+Current data source: https://admin.beachreportcard.org/api/locations
 
-Datasets:
-https://www.californiabeaches.com/beaches/
-https://beachreportcard.org/33.91029999999999/-118.51929100000001/11
-https://admin.beachreportcard.org/api/locations
 
-Beach Report Card: Available Data:
+### Web App
+#### Webscraping
+All webscraping is performed through Python and BeautifulSoup. General beach information is scraped through scrape_CAbeaches.py and historical water quality data is retrieved through get_histData.py. The most recent water quality data is retrieved from a JSON document online through get_qualityData.py. All data is moved to a postgreSQL database using SQLAlchemy, hosted within Heroku.
 
-- Beach Name
-- City
-- County
-- Geo (Lat/Lng)
-- Wet Grade
-- Dry Grade
-- Comments
+#### SQL Database
+The SQL database consists of two separate tables. "beaches" contains the general beach information, while "grade_data" contains the water quality data.
 
-### Key Resources
-The base app file to run the app can be found in the root directory of the repository
-- app.py
+#### App Infrastructure
+The app uses Flask to execute the movement of data from the SQL server to the dashboard. The page HTML executes JavaScript that call respective API routes within app.py, each executing a function to retrieve data from the server (e.g. beach_query(), grades_query()). All query functions are defined within 
+data_query.py, all of them constructing Python objects to return back to the Flask app, which in turn converts the data to JSON objects for the JavaScript to retrieve and render through the visualizations.
 
-Presentation and report files can be found in the root directory as well
-- Report: Team B - BeachReport.docx
-- Presentation: Coastline CRUD.pptx
 
-### Questions
+#### Dashboard
+The information is displayed across multiple maps and visualizations on the app.
 
-###### Who is our audience? 
-People in California - general public &/or people visiting
-###### Which decision is going to be made?
-Providing more interactivity and cleanliness of the data, and providing other visualizations where it is easier to compare different beaches without having to click on each beach to see its info.
-###### Updates
-Reports on wet/dry grade are not always on a daily basis, as some beaches get grades every other day. Updating the database every few days would likely be our route.
-###### Why is this important?
-It allows users to filter the data in an easier fashion, and to hone in on different factors as people have different wants and needs for the beach they choose (such as water quality, free parking, etc.)
+##### CA Beach Info
+General information on the beaches is displayed as a map markers.
 
-### Considerations
+##### Current Water Quality Grades
+Current water quality grades on the beaches are displayed as colored map markers.
 
-###### How do we want to clean the data?
-- Access the api and store into a mongo database.
-- Referencing the data in python (or js) from mongo and grabbing necessary columns for functions needed to build our leaflet map and bar chart.
-- What is the timeframe we want to explore? (TBD)
-- What interactivity do we want to implement?
-  - Filters on the map where they can show beaches only with good water grades, or by other factors. (Still TBD)
+##### Historical Water Quality Info
+A timelapse map visualization shows markers as water quality recordings, using the Leaflet-timeline plugin for Leaflet.js. The colors represent the water quality (green=good, red=poor).
 
-### Design Plan
+A bar chart visualization using the AnyChart plugin shows the number of records were taken for each possible grade within a specific year. Users can apply a year to observe through the dropdown and which grade to review; the dry grade (non-rainy waither conditions) or wet grade (rainy weather conditions).
 
-- Create a dashboard to hold a map and a few graphs, where we can filter the data by grade and some other factors. Initial ideas are:
+## Credits
+* (2021). CaliforniaBeaches.com. https://www.californiabeaches.com/beaches/
+* (2018). Beach Report Card. https://beachreportcard.org/
+* (2021). templatemo. https://templatemo.com/tm-518-sentra
 
-- Plotting all beaches from the dataset into Leaflet map, adding a legend which allows for selection of certain factors.
 
-- Adding plotly visualizations onto the dashboard to further analyze the data, i.e:
-  - Grade counts by County (bar plot, or bubble chart where size represents the number of beaches w high grades)
-  - Beach count vs grade (less focused visualization than the first)
