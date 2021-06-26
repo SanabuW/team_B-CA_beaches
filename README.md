@@ -52,7 +52,7 @@ A timelapse map visualization shows markers as water quality recordings, using t
 <img src="misc_resources/readme_images/app_004.gif" width="600"/>
 
 
-A bar chart visualization using the AnyChart plugin shows the number of records were taken for each possible grade within a specific year. Users can apply a year to observe through the dropdown and which grade to review; the dry grade (non-rainy waither conditions) or wet grade (rainy weather conditions).
+A bar chart visualization using the AnyChart plugin shows the number of records were taken for each possible grade within a specific year. Users can apply a year to observe through the dropdown and which grade to review; the dry grade (non-rainy waither conditions) or wet grade (rainy weather conditions).<br>
 <img src="misc_resources/readme_images/app_005.png" width="600"/>
 
 
